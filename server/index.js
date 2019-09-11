@@ -13,3 +13,5 @@ const resolvers = {
 };
 
 const server = new ApolloServer({ resolvers, typeDefs });
+
+server.listen().then(server => console.log(`Server started at ${server.url}`));
