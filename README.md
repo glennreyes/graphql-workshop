@@ -1,8 +1,8 @@
-# GraphQL for everyone
+# GraphQL for JS developers
 
-Welcome to the React & GraphQL workshop! ☀️
+Welcome to the GraphQL workshop! 🌈
 
-In this workshop we are going to build a Twitter Lite application with React & GraphQL. The workshop material is divided into following:
+In this workshop we are going to build a Twitter Lite application with GraphQL & React. The workshop material is divided into following:
 
 - ⚙️ Setup GraphQL Server
 - 🍎 Define GraphQL Queries
@@ -17,8 +17,8 @@ You can try the finished app [here](https://react-graphql-workshop.netlify.com).
 ## 🔧 Setup
 
 ```sh
-git clone https://github.com/glennreyes/react-graphql-workshop.git
-cd react-graphql-workshop
+git clone https://github.com/glennreyes/graphql-workshop.git
+cd graphql-workshop
 yarn
 ```
 

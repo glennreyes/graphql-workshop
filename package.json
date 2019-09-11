@@ -1,5 +1,5 @@
 {
-  "name": "react-graphql-workshop",
+  "name": "graphql-workshop",
   "private": true,
   "workspaces": [
     "./**/client",

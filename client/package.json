@@ -1,5 +1,5 @@
 {
-  "name": "react-graphql-workshop-client",
+  "name": "graphql-workshop-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
