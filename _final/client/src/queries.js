@@ -1,39 +1,37 @@
 import { gql } from 'apollo-boost';
+import { UserBasicInfo } from './fragments';
 
 export const currentUserQuery = gql`
+  ${UserBasicInfo}
+
   query getCurrentUser {
     me {
-      id
-      username
-      displayName
-      photo
+      ...UserBasicInfo
     }
   }
 `;
 
 export const allTweetsQuery = gql`
+  ${UserBasicInfo}
+
   query getAllTweets {
     tweets {
       id
       tweet
       createdAt
       from {
-        id
-        username
-        displayName
-        photo
+        ...UserBasicInfo
       }
     }
   }
 `;
 
 export const userQuery = gql`
+  ${UserBasicInfo}
+
   query getUser($username: String!) {
     user(username: $username) {
-      id
-      username
-      displayName
-      photo
+      ...UserBasicInfo
       bio
       createdAt
       tweets {
@@ -41,10 +39,7 @@ export const userQuery = gql`
         tweet
         createdAt
         from {
-          id
-          username
-          displayName
-          photo
+          ...UserBasicInfo
         }
       }
     }
