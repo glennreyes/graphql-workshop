@@ -59,9 +59,6 @@ const deleteUser = async user => {
 
   users = users.filter(usr => usr.id !== user.id);
 
-  // Simulate slow network request
-  await wait(1000);
-
   return userToDelete;
 };
 

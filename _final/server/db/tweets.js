@@ -35,9 +35,6 @@ const deleteTweet = async ({ id }) => {
   const tweet = getTweetById(id);
   tweets = tweets.filter(twt => twt.id !== id);
 
-  // Simulate slow network request
-  await wait(1000);
-
   return tweet;
 };
 

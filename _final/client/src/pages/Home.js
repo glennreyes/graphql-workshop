@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@apollo/react-hooks';
+import cuid from 'cuid';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
@@ -44,6 +45,34 @@ const Home = ({ loading, me }) => {
 
       // Wait until the mutation is done before refetching the given queries.
       awaitRefetchQueries: true,
+
+      optimisticResponse: {
+        __typename: 'Mutation',
+        createTweet: {
+          __typename: 'Tweet',
+          id: cuid(),
+          tweet,
+          createdAt: new Date().toISOString(),
+          from: {
+            __typename: 'User',
+            id: me.id,
+            username: me.username,
+            displayName: me.displayName,
+            photo: me.photo,
+          },
+        },
+      },
+
+      update: (proxy, { data: { createTweet } }) => {
+        const data = proxy.readQuery({ query: allTweetsQuery });
+        proxy.writeQuery({
+          query: allTweetsQuery,
+          data: {
+            ...data,
+            tweets: [createTweet, ...data.tweets],
+          },
+        });
+      },
     },
   );
 

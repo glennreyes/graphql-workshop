@@ -1,15 +1,16 @@
 import { gql } from 'apollo-boost';
+import { UserBasicInfo } from './fragments';
 
 export const createTweetMutation = gql`
+  ${UserBasicInfo}
+
   mutation createTweet($tweet: String!, $from: String!) {
     createTweet(tweet: $tweet, from: $from) {
       id
       tweet
       createdAt
       from {
-        id
-        username
-        displayName
+        ...UserBasicInfo
       }
     }
   }
