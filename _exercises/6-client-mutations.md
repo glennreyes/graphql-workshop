@@ -1,4 +1,4 @@
-# 7 – Mutations in React
+# 6 – Client Mutations in React
 
 ## Task 1 – Create tweet mutation
 

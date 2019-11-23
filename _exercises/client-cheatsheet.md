@@ -1,23 +1,5 @@
 # Client cheat sheet
 
-## Client & Provider
-
-```js
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
-
-const client = new ApolloClient({
-  uri: '[MY_GRAPHQL_ENDPOINT]',
-  headers: {
-    // ...
-  },
-});
-
-<ApolloProvider client={client}>
-  <App />
-</ApolloProvider>;
-```
-
 ## Query
 
 ```js

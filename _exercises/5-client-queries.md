@@ -1,11 +1,6 @@
-# 6 – Queries in React
+# 5 – Client Queries in React
 
 ## Task 1 – Query for the current user in the `components/App` component
-
-```js
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
-```
 
 ```js
 const currentUserQuery = gql`
@@ -15,15 +10,9 @@ const currentUserQuery = gql`
 `;
 ```
 
-```js
-const { data, loading, error } = useQuery(currentUserQuery);
-
-// TODO: Return error if there's an error
-//
-// return ...
-```
-
 > 💡 Check for GraphQL request in the Network tab of your Chrome Devtools.
+
+> 💡 Download the Apollo Chrome extension for better debugging.
 
 ## Task 2 – Query for tweets in the `pages/Home` component
 
