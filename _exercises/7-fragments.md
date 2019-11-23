@@ -1,6 +1,6 @@
 # 7 – GraphQL Fragments
 
-## 7.1 Create GraphQL fragments
+## Task 1 – Create GraphQL fragments
 
 Create a `User` GraphQL fragment called `UserBaseInfo` with following fields:
 
