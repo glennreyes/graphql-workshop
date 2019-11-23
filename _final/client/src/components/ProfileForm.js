@@ -1,30 +1,10 @@
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import RawInput from './Input';
+import { updateUserMutation } from '../mutations';
 import { userQuery } from '../queries';
-
-const updateUserMutation = gql`
-  mutation updateUser(
-    $id: ID!
-    $bio: String
-    $displayName: String
-    $photo: String
-    $username: String!
-  ) {
-    updateUser(
-      id: $id
-      bio: $bio
-      displayName: $displayName
-      photo: $photo
-      username: $username
-    ) {
-      id
-    }
-  }
-`;
 
 const Form = styled.form`
   margin: 16px 0;
@@ -47,20 +27,23 @@ const ProfileForm = ({ user, setEditing }) => {
   const [displayName, setDisplayName] = useState(user.displayName);
   const [bio, setBio] = useState(user.bio);
   const [photo, setPhoto] = useState(user.photo);
-  const [updateUser] = useMutation(updateUserMutation, {
-    onCompleted: () => reset(),
-    refetchQueries: [
-      { query: userQuery, variables: { username: user.username } },
-    ],
-    awaitRefetchQueries: true,
-    variables: {
-      id: user.id,
-      displayName,
-      bio,
-      photo,
-      username: user.username,
+  const [updateUser, { loading: updateUserLoading }] = useMutation(
+    updateUserMutation,
+    {
+      onCompleted: () => reset(),
+      refetchQueries: [
+        { query: userQuery, variables: { username: user.username } },
+      ],
+      awaitRefetchQueries: true,
+      variables: {
+        id: user.id,
+        displayName,
+        bio,
+        photo,
+        username: user.username,
+      },
     },
-  });
+  );
 
   const reset = () => {
     setDisplayName(user.displayName);
@@ -98,7 +81,9 @@ const ProfileForm = ({ user, setEditing }) => {
         </Button>
         <SaveButton
           primary
-          disabled={displayName === '' || !photo.startsWith('http')}
+          disabled={
+            updateUserLoading || displayName === '' || !photo.startsWith('http')
+          }
         >
           Save
         </SaveButton>

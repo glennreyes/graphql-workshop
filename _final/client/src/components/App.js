@@ -1,24 +1,13 @@
-import { gql } from 'apollo-boost';
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Router } from '@reach/router';
 import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
-
-const currentUserQuery = gql`
-  query getCurrentUser {
-    me {
-      id
-      username
-      displayName
-      photo
-    }
-  }
-`;
+import { currentUserQuery } from '../queries';
 
 const App = () => {
-  const { loading, error, data } = useQuery(currentUserQuery);
+  const { loading, error, data = { me: null } } = useQuery(currentUserQuery);
 
   if (error) return `Error: ${error.message}`;
 

@@ -1,4 +1,5 @@
 const cuid = require('cuid');
+const wait = require('waait');
 
 let users = [
   {
@@ -29,8 +30,12 @@ const createUser = async user => {
 
   users = [...users, newUser];
 
+  // Simulate slow network request
+  await wait(1000);
+
   return newUser;
 };
+
 const updateUser = async user => {
   const userToUpdate = await getUserByUsername(user.username);
   if (!userToUpdate) {
@@ -40,8 +45,12 @@ const updateUser = async user => {
     usr.username === user.username ? { ...usr, ...user } : usr,
   );
 
+  // Simulate slow network request
+  await wait(2000);
+
   return { ...userToUpdate, ...user };
 };
+
 const deleteUser = async user => {
   const userToDelete = await getUserById(user.id);
   if (!userToDelete) {
@@ -50,8 +59,12 @@ const deleteUser = async user => {
 
   users = users.filter(usr => usr.id !== user.id);
 
+  // Simulate slow network request
+  await wait(1000);
+
   return userToDelete;
 };
+
 const getAllUsers = async () => users;
 const getUserById = async id => users.find(user => user.id === id);
 const getUserByUsername = async username =>

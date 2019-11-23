@@ -1,4 +1,5 @@
 const cuid = require('cuid');
+const wait = require('waait');
 
 let tweets = [
   {
@@ -24,14 +25,22 @@ const createTweet = async tweet => {
 
   tweets = [...tweets, newTweet];
 
+  // Simulate slow network request
+  await wait(2000);
+
   return newTweet;
 };
+
 const deleteTweet = async ({ id }) => {
   const tweet = getTweetById(id);
   tweets = tweets.filter(twt => twt.id !== id);
 
+  // Simulate slow network request
+  await wait(1000);
+
   return tweet;
 };
+
 const getAllTweets = async () => tweets;
 const getTweetById = async id => tweets.find(tweet => tweet.id === id);
 const getTweetsFrom = async username =>

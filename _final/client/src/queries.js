@@ -1,5 +1,16 @@
 import { gql } from 'apollo-boost';
 
+export const currentUserQuery = gql`
+  query getCurrentUser {
+    me {
+      id
+      username
+      displayName
+      photo
+    }
+  }
+`;
+
 export const allTweetsQuery = gql`
   query getAllTweets {
     tweets {
