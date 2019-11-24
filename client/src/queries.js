@@ -1,13 +1,19 @@
 import { gql } from 'apollo-boost';
 
+export const currentUserQuery = gql`
+  {
+    TODO
+  }
+`;
+
 export const allTweetsQuery = gql`
-  query getAllTweets {
-    # TODO
+  {
+    TODO
   }
 `;
 
 export const userQuery = gql`
-  query getUser($username: String!) {
-    # TODO
+  {
+    TODO
   }
 `;

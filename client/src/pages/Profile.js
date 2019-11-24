@@ -1,12 +1,16 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { Calendar } from 'react-feather';
 import styled from 'styled-components';
+import NotFound from './NotFound';
 import Avatar from '../components/Avatar';
 import Button from '../components/Button';
 import Container from '../components/Container';
+import Loading from '../components/Loading';
 import ProfileForm from '../components/ProfileForm';
 import Tweets from '../components/Tweets';
+import { userQuery } from '../queries';
 
 const Header = styled.header`
   background: #000;
@@ -57,15 +61,23 @@ const StyledCalendar = styled(Calendar)`
   margin-right: 8px;
 `;
 
-// TODO: Delete those variables after exercise
-const canEdit = false;
-const user = { tweets: [] };
-
 const Profile = ({ loading, me, username }) => {
   const [isEditing, setEditing] = useState(false);
+  const { data, loading: loadingUser, error } = useQuery(userQuery, {
+    variables: { username },
+  });
+
+  if (loadingUser) return <Loading />;
+  if (error) return `Error: ${error.message}`;
+
+  const { user } = data;
+
+  if (!user) return <NotFound username={username} />;
+
+  const canEdit = me.id === user.id;
 
   return (
-    <div>
+    <>
       <Header />
       <Container>
         <Section>
@@ -93,7 +105,7 @@ const Profile = ({ loading, me, username }) => {
         )}
         <Tweets loading={loading} me={me} tweets={user.tweets} />
       </Container>
-    </div>
+    </>
   );
 };
 

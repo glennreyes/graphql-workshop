@@ -1,3 +1,5 @@
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import React from 'react';
 import {
   MessageCircle as Comment,
@@ -9,6 +11,8 @@ import { Link } from '@reach/router';
 import styled from 'styled-components';
 import Avatar from './Avatar';
 import Date from './Date';
+import { deleteTweetMutation } from '../mutations';
+import { allTweetsQuery, userQuery } from '../queries';
 
 const Wrapper = styled.div`
   background: #fff;
@@ -71,6 +75,17 @@ const Spacer = styled.div`
 
 const Tweet = ({ me, loading, tweet }) => {
   const canDelete = tweet.from.id === me.id;
+  const [deleteTweet] = useMutation(deleteTweetMutation, {
+    // TODO: Pass mutation variables
+    // variables: {},
+
+    // TODO: Refetch following queries with the given variables once the mutation
+    // has been executed.
+    // refetchQueries: [],
+
+    // Wait until the mutation is done before refetching the given queries.
+    awaitRefetchQueries: true,
+  });
 
   return (
     <Wrapper>
@@ -101,7 +116,7 @@ const Tweet = ({ me, loading, tweet }) => {
               disabled={loading}
               onClick={() => {
                 if (window.confirm('Are you sure?')) {
-                  // TODO
+                  deleteTweet();
                 }
               }}
             >

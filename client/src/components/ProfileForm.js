@@ -1,7 +1,10 @@
+import { useMutation } from '@apollo/react-hooks';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 import RawInput from './Input';
+import { updateUserMutation } from '../mutations';
+import { userQuery } from '../queries';
 
 const Form = styled.form`
   margin: 16px 0;
@@ -32,10 +35,29 @@ const ProfileForm = ({ user, setEditing }) => {
     setEditing(false);
   };
 
+  const [updateUser, { loading: updateUserLoading }] = useMutation(
+    updateUserMutation,
+    {
+      // TODO: Pass mutation variables
+      // variables: {},
+
+      // TODO: Reset the tweet composer to its initial state
+      // onCompleted: () => {},
+
+      // TODO: Refetch following queries with the given variables once the mutation
+      // has been executed.
+      // refetchQueries: [],
+
+      // Wait until the mutation is done before refetching the given queries.
+      awaitRefetchQueries: true,
+    },
+  );
+
   return (
     <Form
       onSubmit={event => {
         event.preventDefault();
+        updateUser();
       }}
     >
       <Input
@@ -60,7 +82,9 @@ const ProfileForm = ({ user, setEditing }) => {
         </Button>
         <SaveButton
           primary
-          disabled={displayName === '' || !photo.startsWith('http')}
+          disabled={
+            updateUserLoading || displayName === '' || !photo.startsWith('http')
+          }
         >
           Save
         </SaveButton>
