@@ -1,7 +1,12 @@
 # 6 – Client Mutations in React
 
-## Task 1 – Create tweet mutation
+Go to `src/mutation.js` to add the corressponding mutations.
 
-## Task 2 – Delete tweet mutation
+## Task 1 – Implement createTweet mutation
 
-## Task 3 – Update profile mutation
+## Task 2 – Implement deleteTweet mutation
+
+## Task 3 – Implement updateUser mutation
+
+> 💡 Check the Apollo docs to learn more about mutations:
+> https://www.apollographql.com/docs/react/data/mutations
