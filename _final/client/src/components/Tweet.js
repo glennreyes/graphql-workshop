@@ -11,23 +11,8 @@ import { Link } from '@reach/router';
 import styled from 'styled-components';
 import Avatar from './Avatar';
 import Date from './Date';
+import { deleteTweetMutation } from '../mutations';
 import { allTweetsQuery, userQuery } from '../queries';
-
-const deleteTweetMutation = gql`
-  mutation deleteTweet($id: ID!) {
-    deleteTweet(id: $id) {
-      id
-      tweet
-      createdAt
-      from {
-        id
-        username
-        displayName
-        photo
-      }
-    }
-  }
-`;
 
 const Wrapper = styled.div`
   background: #fff;

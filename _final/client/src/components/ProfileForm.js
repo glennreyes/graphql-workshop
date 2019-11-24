@@ -27,23 +27,6 @@ const ProfileForm = ({ user, setEditing }) => {
   const [displayName, setDisplayName] = useState(user.displayName);
   const [bio, setBio] = useState(user.bio);
   const [photo, setPhoto] = useState(user.photo);
-  const [updateUser, { loading: updateUserLoading }] = useMutation(
-    updateUserMutation,
-    {
-      onCompleted: () => reset(),
-      refetchQueries: [
-        { query: userQuery, variables: { username: user.username } },
-      ],
-      awaitRefetchQueries: true,
-      variables: {
-        id: user.id,
-        displayName,
-        bio,
-        photo,
-        username: user.username,
-      },
-    },
-  );
 
   const reset = () => {
     setDisplayName(user.displayName);
@@ -51,6 +34,24 @@ const ProfileForm = ({ user, setEditing }) => {
     setPhoto(user.photo);
     setEditing(false);
   };
+
+  const [updateUser, { loading: updateUserLoading }] = useMutation(
+    updateUserMutation,
+    {
+      variables: {
+        id: user.id,
+        displayName,
+        bio,
+        photo,
+        username: user.username,
+      },
+      onCompleted: () => reset(),
+      refetchQueries: [
+        { query: userQuery, variables: { username: user.username } },
+      ],
+      awaitRefetchQueries: true,
+    },
+  );
 
   return (
     <Form

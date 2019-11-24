@@ -16,6 +16,21 @@ export const createTweetMutation = gql`
   }
 `;
 
+export const deleteTweetMutation = gql`
+  ${UserBasicInfo}
+
+  mutation deleteTweet($id: ID!) {
+    deleteTweet(id: $id) {
+      id
+      tweet
+      createdAt
+      from {
+        ...UserBasicInfo
+      }
+    }
+  }
+`;
+
 export const updateUserMutation = gql`
   mutation updateUser(
     $id: ID!

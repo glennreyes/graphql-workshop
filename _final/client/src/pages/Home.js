@@ -31,6 +31,7 @@ const Home = ({ loading, me }) => {
   const [createTweet, { loading: createTweetLoading }] = useMutation(
     createTweetMutation,
     {
+      // Pass mutation variables
       variables: { tweet, from: me.username },
 
       // Reset the tweet composer to its initial state
@@ -46,6 +47,7 @@ const Home = ({ loading, me }) => {
       // Wait until the mutation is done before refetching the given queries.
       awaitRefetchQueries: true,
 
+      // Set optimistic response
       optimisticResponse: {
         __typename: 'Mutation',
         createTweet: {
@@ -63,6 +65,7 @@ const Home = ({ loading, me }) => {
         },
       },
 
+      // Manually update the cache by the given optimistic response
       update: (proxy, { data: { createTweet } }) => {
         const data = proxy.readQuery({ query: allTweetsQuery });
         proxy.writeQuery({
