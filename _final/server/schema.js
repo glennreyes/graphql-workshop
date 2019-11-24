@@ -28,6 +28,10 @@ const schema = gql`
     tweets: [Tweet!]!
   }
 
+  type Subscription {
+    tweetCreated: Tweet
+  }
+
   type Tweet {
     id: ID!
     createdAt: String!

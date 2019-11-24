@@ -12,6 +12,7 @@ In this workshop we are going to build a GraphQL server for a Twitter Lite app. 
 - 🍇 GraphQL Mutations in React
 - 🍕 Fragments
 - 🦋 Optimistic UI
+- 🐞 Subscriptions
 
 See a demo here [here](https://react-graphql-workshop.netlify.com).
 
@@ -61,6 +62,7 @@ yarn start
 - [6 – Mutations in React](./_exercises/6-client-mutations.md)
 - [7 – Fragments](./_exercises/7-fragments.md)
 - [8 – Optimistic UI](./_exercises/8-optimistic-ui.md)
+- [9 – Subscriptions](./_exercises/9-subscriptions.md)
 
 ### Misc
 

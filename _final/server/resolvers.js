@@ -1,4 +1,4 @@
-const { ApolloError } = require('apollo-server');
+const { ApolloError, PubSub } = require('apollo-server');
 const {
   createTweet,
   deleteTweet,
@@ -14,11 +14,16 @@ const {
   getUserByUsername,
 } = require('./db/users');
 
+const pubsub = new PubSub();
+const TWEET_CREATED = 'TWEET_CREATED';
+
 const resolvers = {
   Mutation: {
     createTweet: async (_, args) => {
       try {
-        return createTweet(args);
+        const tweet = await createTweet(args);
+        pubsub.publish(TWEET_CREATED, { tweetCreated: tweet });
+        return tweet;
       } catch (error) {
         throw new ApolloError(error);
       }
@@ -59,6 +64,13 @@ const resolvers = {
     tweets: () => getAllTweets(),
     users: () => getAllUsers(),
     user: (_, args) => getUserByUsername(args.username),
+  },
+
+  Subscription: {
+    tweetCreated: {
+      // Additional event labels can be passed to asyncIterator creation
+      subscribe: () => pubsub.asyncIterator(TWEET_CREATED),
+    },
   },
 
   Tweet: {
