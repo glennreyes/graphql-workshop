@@ -54,3 +54,9 @@ mutation createTweet($from: String!, $tweet: String!) {
   "tweet": "Whatever"
 }
 ```
+
+## Task 4 – Bonus: Error handling
+
+Throw proper errors if the mutation fails.
+
+See: https://www.apollographql.com/docs/apollo-server/data/errors
