@@ -1,13 +1,5 @@
 # Bonus exercises
 
-## Efficiently caching data sources
-
-https://www.apollographql.com/docs/apollo-server/data/data-sources
-
-## Automated persisted queries
-
-https://www.apollographql.com/docs/apollo-server/performance/apq
-
 ## Connect GraphQL to a real database
 
 Some simple solutions:
@@ -45,3 +37,13 @@ Create notification events when:
 
 - Passport.js or Auth0 Service might be helpful
 - Create Login page
+
+# Bonus topics
+
+## Efficiently caching data sources
+
+https://www.apollographql.com/docs/apollo-server/data/data-sources
+
+## Automated persisted queries
+
+https://www.apollographql.com/docs/apollo-server/performance/apq
