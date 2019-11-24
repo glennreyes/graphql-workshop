@@ -1,6 +1,17 @@
 # 5 – Client Queries in React
 
-## Task 1 – Query for the current user in the `components/App` component
+In the next exercises we will be working in the client. It's a tiny create-react-app that demonstrates a Twitter Lite app.
+
+Although the app is written in React, we will mostly be focus writing code related to GraphQL. We won't write any React specific code.
+
+## Before we start
+
+- Make sure our GraphQL server is running under http://localhost:4000
+- Start the client with `yarn start`
+
+## Task 1 – Query for the current user
+
+In `src/queries.js` add following Query:
 
 ```js
 const currentUserQuery = gql`
@@ -10,39 +21,18 @@ const currentUserQuery = gql`
 `;
 ```
 
+Refer to the `components/App` component to see how it is being consumed by the app.
+
 > 💡 Check for GraphQL request in the Network tab of your Chrome Devtools.
 
 > 💡 Download the Apollo Chrome extension for better debugging.
 
-## Task 2 – Query for tweets in the `pages/Home` component
+## Task 2 – Query for all tweets
 
-```js
-import { allTweetsQuery } from '../queries';
-```
+Add the corresponding query in `src/queries.js`. Refer to the `pages/Home` component to see how it is being consumed by the app.
 
-```js
-const { data, loading, error } = useQuery(allTweetsQuery);
+## Task 3 – Query for logged in user in the profile page
 
-// TODO: Render the `Loading` component when still loading
-// TODO: Return error if there's an error
-//
-// return ...
-```
-
-## Task 3 – Query for user in the `pages/Profile` component
-
-```js
-const { data, loading, error } = useQuery(allTweetsQuery, {
-  variables: {
-    /* TODO */
-  },
-});
-
-// TODO: Render the `Loading` component when still loading
-// TODO: Return error if there's an error
-
-// TODO: If there's no user, render the `NotFound` page and pass username prop
-// return ...
-```
+Add the corresponding query in `src/queries.js`. Refer to the `pages/Profile` component to see how it is being consumed by the app.
 
 > 💡 We want to pass username as a variable.
