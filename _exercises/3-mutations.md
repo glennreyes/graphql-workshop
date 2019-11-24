@@ -55,7 +55,7 @@ mutation createTweet($from: String!, $tweet: String!) {
 }
 ```
 
-## Task 4 – Bonus: Error handling
+## Bonus Task – Error handling
 
 Throw proper errors if the mutation fails.
 

@@ -13,6 +13,6 @@ Go to the `pages/Home` component and implement Optimistic UI for the `createTwee
 
 > 💡 Debug with the Apollo Chrome Extension, Network & Console tab in your Devtools.
 
-## Task 2 – Bonus: Load updated profile optimistically
+## Bonus Task – Load updated profile optimistically
 
 Follow similar steps as above.
