@@ -1,0 +1,41 @@
+query AllMessages {
+  allMessages {
+    id
+    content
+    createdAt
+    user {
+      id
+      username
+      displayName
+      photo
+    }
+  }
+}
+
+mutation SendMessage($content: String!) {
+  sendMessage(content: $content) {
+    id
+    content
+    createdAt
+    user {
+      id
+      username
+      displayName
+      photo
+    }
+  }
+}
+
+subscription OnNewMessage {
+  newMessage {
+    id
+    content
+    createdAt
+    user {
+      id
+      username
+      displayName
+      photo
+    }
+  }
+}

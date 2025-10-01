@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "module": "esnext"
+  },
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["*.ts", ".eslintrc.js", "prisma/**/*.ts", "src/**/*.ts"]
+}
