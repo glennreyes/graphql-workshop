@@ -1,17 +1,17 @@
-# TODO(@exercise-01): Extract shared post fields into a fragment once the queries work.
+fragment Post on Post {
+  message
+  createdAt
+  likesCount
+  isLikedByMe
+}
 
 query AllPosts {
   allPosts {
     id
-    message
-    createdAt
-    likesCount
-    isLikedByMe
+    ...Post
     user {
       id
-      displayName
-      photo
-      username
+      ...User
     }
   }
 }
@@ -19,15 +19,10 @@ query AllPosts {
 mutation CreatePost($message: String!) {
   createPost(message: $message) {
     id
-    message
-    createdAt
-    likesCount
-    isLikedByMe
+    ...Post
     user {
       id
-      displayName
-      photo
-      username
+      ...User
     }
   }
 }

@@ -1,27 +1,24 @@
-# TODO(@exercise-01): Extract shared user fields into a fragment once queries are ready.
+fragment User on User {
+  displayName
+  photo
+  username
+}
 
 query Me {
   me {
     id
-    displayName
-    photo
-    username
+    ...User
   }
 }
 
 query User($username: String!) {
   user(username: $username) {
     id
-    displayName
-    photo
-    username
+    ...User
     bio
     posts {
       id
-      message
-      createdAt
-      likesCount
-      isLikedByMe
+      ...Post
     }
   }
 }
@@ -29,8 +26,6 @@ query User($username: String!) {
 mutation UpdateUser($bio: String, $displayName: String, $email: String, $photo: String, $username: String) {
   updateUser(bio: $bio, displayName: $displayName, email: $email, photo: $photo, username: $username) {
     id
-    displayName
-    photo
-    username
+    ...User
   }
 }

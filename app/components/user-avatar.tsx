@@ -1,14 +1,23 @@
 'use client';
 
+import type { MeQuery } from '@/graphql/generated/graphql';
+import { MeDocument } from '@/graphql/generated/graphql';
+import { getInitials } from '@/lib/helpers';
+import { useSuspenseQuery } from '@apollo/client/react';
+import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export function UserAvatar() {
-  // TODO(@exercise-01): Use `useSuspenseQuery` with the `Me` operation to load the viewer.
-  // TODO(@exercise-01): Derive initials with `getInitials` and link to `/@{username}`.
+  const { data } = useSuspenseQuery<MeQuery>(MeDocument);
+
+  const initials = getInitials(data.me.displayName ?? 'Anonymous');
+
   return (
-    <Avatar data-state="placeholder">
-      <AvatarImage src={undefined} />
-      <AvatarFallback>Me</AvatarFallback>
-    </Avatar>
+    <Link href={`/@${data.me.username}`}>
+      <Avatar>
+        <AvatarImage src={data.me.photo ?? undefined} />
+        <AvatarFallback>{initials}</AvatarFallback>
+      </Avatar>
+    </Link>
   );
 }

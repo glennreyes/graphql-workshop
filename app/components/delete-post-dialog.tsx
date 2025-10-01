@@ -1,8 +1,5 @@
 'use client';
 
-import type { DeletePostMutation, DeletePostMutationVariables } from '@/graphql/generated/graphql';
-import { AllPostsDocument, DeletePostDocument, UserDocument } from '@/graphql/generated/graphql';
-import { useMutation } from '@apollo/client/react';
 import type { Dispatch, SetStateAction } from 'react';
 import {
   AlertDialog,
@@ -25,25 +22,11 @@ interface DeletePostDialogProps {
 }
 
 export function DeletePostDialog({ id, open, setOpen, username }: DeletePostDialogProps) {
-  const [deletePost] = useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument, {
-    awaitRefetchQueries: true,
-    refetchQueries: [AllPostsDocument, { query: UserDocument, variables: { username } }],
-    variables: { id },
-  });
   async function onSubmit() {
-    try {
-      const deletePostFetchResult = await deletePost({ variables: { id } });
-
-      if (deletePostFetchResult.error) {
-        throw new Error(deletePostFetchResult.error.message);
-      }
-
-      toast.success('Your post has been deleted.');
-    } catch {
-      toast.error('Uh oh! Something went wrong.', {
-        description: 'There was a problem with your request.',
-      });
-    }
+    // TODO(@exercise-02): Execute the `DeletePost` mutation and update the cache for both feed and profile.
+    toast.info('Delete post mutation not wired yet.', {
+      description: `Post id: ${id}, user: @${username}`,
+    });
   }
 
   return (

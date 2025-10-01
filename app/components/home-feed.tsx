@@ -1,16 +1,15 @@
 'use client';
 
+import type { AllPostsQuery, MeQuery } from '@/graphql/generated/graphql';
+import { AllPostsDocument, MeDocument } from '@/graphql/generated/graphql';
+import { useSuspenseQuery } from '@apollo/client/react';
 import { Feed } from './feed';
 
 export function HomeFeed() {
-  // TODO(@exercise-01): Load the viewer (`Me`) and all posts with `useSuspenseQuery`.
-  // TODO(@exercise-01): Pass the loaded data to `<Feed me={...} posts={...} />`.
-  return (
-    <div className="grid gap-6">
-      <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-        TODO: Populate the home feed by querying posts and the current user.
-      </div>
-      <Feed posts={[]} />
-    </div>
-  );
+  const {
+    data: { me },
+  } = useSuspenseQuery<MeQuery>(MeDocument);
+  const { data } = useSuspenseQuery<AllPostsQuery>(AllPostsDocument);
+
+  return <Feed me={{ username: me.username }} posts={data.allPosts} />;
 }

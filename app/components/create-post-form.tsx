@@ -1,8 +1,5 @@
 'use client';
 
-import type { CreatePostMutation, CreatePostMutationVariables } from '@/graphql/generated/graphql';
-import { AllPostsDocument, CreatePostDocument } from '@/graphql/generated/graphql';
-import { useMutation } from '@apollo/client/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -21,31 +18,15 @@ export function CreatePostForm() {
     },
     resolver: zodResolver(formSchema),
   });
-  const [createPost, createPostMutationResult] = useMutation<CreatePostMutation, CreatePostMutationVariables>(
-    CreatePostDocument,
-    {
-      awaitRefetchQueries: true,
-      refetchQueries: [AllPostsDocument],
-    },
-  );
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const createPostFetchResult = await createPost({ variables: { message: values.message } });
-
-      if (createPostFetchResult.error) {
-        throw new Error(createPostFetchResult.error.message);
-      }
-
-      toast.success('Your message has been sent.');
-      form.reset();
-    } catch {
-      toast.error('Uh oh! Something went wrong.', {
-        description: 'There was a problem with your request.',
-      });
-    }
+    // TODO(@exercise-02): Invoke the `CreatePost` mutation and handle success/error states.
+    toast.info('Submit post mutation not wired yet.', {
+      description: `Preview message: ${values.message || '...'} `,
+    });
   }
 
-  const pending = createPostMutationResult.loading;
+  // TODO(@exercise-02): Replace with `createPost` loading state from Apollo.
+  const pending = false;
 
   return (
     <Form {...form}>
