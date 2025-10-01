@@ -1,8 +1,8 @@
-import './message.js';
-import './post.js';
-import './user.js';
+import './message';
+import './post';
+import './user';
 import { DateTimeResolver } from 'graphql-scalars';
-import { builder } from '../builder.js';
+import { builder } from '../builder';
 
 builder.mutationType({});
 builder.queryType({});

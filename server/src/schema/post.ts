@@ -1,5 +1,5 @@
-import { builder } from '../builder.js';
-import { prisma } from '../prisma.js';
+import { builder } from '../builder';
+import { prisma } from '../prisma';
 
 const Post = builder.prismaObject('Post', {
   fields: (t) => ({

@@ -1,5 +1,5 @@
-import { builder } from '../builder.js';
-import { prisma } from '../prisma.js';
+import { builder } from '../builder';
+import { prisma } from '../prisma';
 
 export const User = builder.prismaObject('User', {
   fields: (t) => ({
