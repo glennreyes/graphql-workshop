@@ -26,12 +26,12 @@ ENV NEXT_PUBLIC_GRAPHQL_WS_ENDPOINT=wss://graphql-workshop.fly.dev/graphql
 RUN cd app && pnpm build
 
 # Copy public and static files for Next.js standalone
-RUN mkdir -p /app/app/.next/standalone/.next && \
-    cp -r /app/app/public /app/app/.next/standalone/public 2>/dev/null || true && \
-    cp -r /app/app/.next/static /app/app/.next/standalone/.next/static
+RUN mkdir -p /app/app/.next/standalone/app/.next && \
+    cp -r /app/app/public /app/app/.next/standalone/app/public 2>/dev/null || true && \
+    cp -r /app/app/.next/static /app/app/.next/standalone/app/.next/static
 
 # Create startup script that runs both server and app
-RUN printf '#!/bin/sh\ncd /app/server && node dist/index.js &\ncd /app/app/.next/standalone && PORT=3000 node server.js\n' > /start.sh && chmod +x /start.sh
+RUN printf '#!/bin/sh\nset -e\ncd /app/server && node dist/src/index.js &\ncd /app/app/.next/standalone/app && PORT=3000 node server.js\n' > /start.sh && chmod +x /start.sh
 
 EXPOSE 3000 4000
 
