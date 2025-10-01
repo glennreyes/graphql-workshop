@@ -26,6 +26,7 @@ pnpm dev
 > - [`01-queries-and-fragments.md`](docs/exercises/01-queries-and-fragments.md)
 > - [`02-mutations-and-optimistic-ui.md`](docs/exercises/02-mutations-and-optimistic-ui.md)
 > - [`03-server-components.md`](docs/exercises/03-server-components.md)
+> - [`04-subscriptions.md`](docs/exercises/04-subscriptions.md)
 
 ---
 
@@ -119,6 +120,7 @@ pnpm dev
 >
 > - https://www.apollographql.com/docs/react/data/subscriptions
 > - https://the-guild.dev/graphql/yoga-server/docs/features/subscriptions
+> - Open two tabs of http://localhost:3000/chat to verify messages sync in real time.
 
 ### **12:45 – 13:00 | Wrap-Up & Q&A (15m)**
 
