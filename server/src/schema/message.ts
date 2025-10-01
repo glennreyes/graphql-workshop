@@ -1,5 +1,5 @@
-import { builder, pubSub } from '../builder';
-import { prisma } from '../prisma';
+import { builder, pubSub } from '../builder.js';
+import { prisma } from '../prisma.js';
 
 const Message = builder.prismaObject('Message', {
   fields: (t) => ({

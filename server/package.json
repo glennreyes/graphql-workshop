@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --noEmit false --outDir dist",
+    "build": "tsc --project tsconfig.build.json",
     "dev": "tsx watch --clear-screen=false src/index.ts",
     "lint": "TIMING=1 eslint .",
     "postinstall": "prisma generate",

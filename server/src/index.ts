@@ -3,10 +3,10 @@ import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
 import type { User } from '@prisma/client';
 import { createYoga } from 'graphql-yoga';
 import type { Context as GraphQLWSContext, SubscribePayload } from 'graphql-ws';
-import { useServer, type Extra } from 'graphql-ws/use/ws';
+import { useServer, type Extra } from 'graphql-ws/dist/use/ws.js';
 import { WebSocketServer } from 'ws';
-import { prisma } from './prisma';
-import { schema } from './schema';
+import { prisma } from './prisma.js';
+import { schema } from './schema/index.js';
 
 export interface Context {
   user: User;
@@ -45,7 +45,7 @@ useServer(
     },
     onSubscribe: async (
       ctx: GraphQLWSContext<Record<string, unknown>, Extra>,
-      _messageId,
+      _messageId: string,
       payload: SubscribePayload,
     ) => {
       const {
