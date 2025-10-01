@@ -22,6 +22,11 @@ pnpm dev
 
 3. Open GraphQL Explorer at http://localhost:4000/graphql and the React app at http://localhost:3000.
 
+> Exercise handouts live in [`docs/exercises`](docs/exercises):
+> - [`01-queries-and-fragments.md`](docs/exercises/01-queries-and-fragments.md)
+> - [`02-mutations-and-optimistic-ui.md`](docs/exercises/02-mutations-and-optimistic-ui.md)
+> - [`03-server-components.md`](docs/exercises/03-server-components.md)
+
 ---
 
 ## **Workshop Schedule**
