@@ -1,0 +1,32 @@
+fragment Post on Post {
+  message
+  createdAt
+  likesCount
+  isLikedByMe
+}
+
+query AllPosts {
+  allPosts {
+    id
+    ...Post
+    user {
+      id
+      ...User
+    }
+  }
+}
+
+mutation CreatePost($message: String!) {
+  createPost(message: $message) {
+    id
+    ...Post
+    user {
+      id
+      ...User
+    }
+  }
+}
+
+mutation DeletePost($id: String!) {
+  deletePost(id: $id)
+}

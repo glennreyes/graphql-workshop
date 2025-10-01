@@ -1,0 +1,15 @@
+mutation LikePost($postId: String!) {
+  likePost(postId: $postId) {
+    id
+    likesCount
+    isLikedByMe
+  }
+}
+
+mutation UnlikePost($postId: String!) {
+  unlikePost(postId: $postId) {
+    id
+    likesCount
+    isLikedByMe
+  }
+}

@@ -1,0 +1,31 @@
+fragment User on User {
+  displayName
+  photo
+  username
+}
+
+query Me {
+  me {
+    id
+    ...User
+  }
+}
+
+query User($username: String!) {
+  user(username: $username) {
+    id
+    ...User
+    bio
+    posts {
+      id
+      ...Post
+    }
+  }
+}
+
+mutation UpdateUser($bio: String, $displayName: String, $email: String, $photo: String, $username: String) {
+  updateUser(bio: $bio, displayName: $displayName, email: $email, photo: $photo, username: $username) {
+    id
+    ...User
+  }
+}
