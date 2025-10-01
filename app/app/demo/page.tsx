@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
 import { Chat } from '@/components/chat';
-import { ServerPosts } from '@/components/server-posts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const dynamic = 'force-dynamic';
@@ -23,9 +21,11 @@ export default function DemoPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Suspense fallback={<div>Loading server posts...</div>}>
-              <ServerPosts limit={5} />
-            </Suspense>
+            {/* TODO(@exercise-03): Import `Suspense` from 'react' and wrap `ServerPosts` in it with a streaming-friendly fallback. */}
+            {/* TODO(@exercise-03): Import `<ServerPosts>` and render `<ServerPosts limit={5} />` once it loads data server-side. */}
+            <div className="rounded-md border border-dashed p-4 text-sm text-muted-foreground">
+              Server component placeholder – fetch posts on the server and stream them here.
+            </div>
           </CardContent>
         </Card>
       </section>

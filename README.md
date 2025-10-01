@@ -47,11 +47,13 @@ pnpm --filter app dev
 > - `finish`: the completed reference solution for the entire workshop.
 > - `main`: exercise 01 – focus on queries and fragments. Future exercises live on branches following the same pattern.
 > - `exercise/02-mutations-optimistic-ui`: exercise 01 is solved, and new TODOs guide you through mutations & optimistic UI.
+> - `exercise/03-server-components`: exercises 01 + 02 are solved, and new TODOs cover React Server Components + Suspense.
 > - Look for `TODO(@exercise-XX)` markers to know which files to touch.
 
 📘 Need more guidance? Each branch ships with exercise notes inside [`docs/exercises/`](docs/exercises).
 - Exercise 01 starter: [`01-queries-and-fragments.md`](docs/exercises/01-queries-and-fragments.md)
 - Exercise 02 starter: [`02-mutations-and-optimistic-ui.md`](docs/exercises/02-mutations-and-optimistic-ui.md)
+- Exercise 03 starter: [`03-server-components.md`](docs/exercises/03-server-components.md)
 
 ---
 

@@ -1,8 +1,13 @@
 'use client';
 
-import type { UserQuery, UserQueryVariables } from '@/graphql/generated/graphql';
-import { UserDocument } from '@/graphql/generated/graphql';
-import { useSuspenseQuery } from '@apollo/client/react';
+import type {
+  UpdateUserMutation,
+  UpdateUserMutationVariables,
+  UserQuery,
+  UserQueryVariables,
+} from '@/graphql/generated/graphql';
+import { UpdateUserDocument, UserDocument } from '@/graphql/generated/graphql';
+import { useMutation, useSuspenseQuery } from '@apollo/client/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -38,15 +43,33 @@ export function EditProfile({ username }: EditProfileProps) {
     },
     resolver: zodResolver(formSchema),
   });
+  const [updateUser, updateUserMutationResult] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
+    UpdateUserDocument,
+    {
+      awaitRefetchQueries: true,
+      refetchQueries: [{ query: UserDocument, variables: { username } }],
+    },
+  );
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // TODO(@exercise-02): Wire up the `UpdateUser` mutation, close the dialog on success, and refresh cached data.
-    toast.info('Update profile mutation not wired yet.', {
-      description: `Pending payload: ${JSON.stringify(values)}`,
-    });
+    try {
+      const updateUserFetchResult = await updateUser({ variables: values });
+
+      if (updateUserFetchResult.error) {
+        throw new Error(updateUserFetchResult.error.message);
+      }
+
+      form.reset();
+      setOpen(false);
+
+      toast.success('Your profile has been updated.');
+    } catch {
+      toast.error('Uh oh! Something went wrong.', {
+        description: 'There was a problem with your request.',
+      });
+    }
   }
 
-  // TODO(@exercise-02): Replace with the mutation loading state once `useMutation` is added.
-  const pending = false;
+  const pending = updateUserMutationResult.loading;
 
   return (
     <Form {...form}>
@@ -108,7 +131,7 @@ export function EditProfile({ username }: EditProfileProps) {
               />
               <FormField
                 control={form.control}
-                name="bio"
+                name="photo"
                 render={({ field }) => (
                   <FormItem className="grid grid-cols-4 items-center gap-4">
                     <FormLabel className="text-right">Bio</FormLabel>
