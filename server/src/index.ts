@@ -5,8 +5,8 @@ import { createYoga } from 'graphql-yoga';
 import type { Context as GraphQLWSContext, SubscribePayload } from 'graphql-ws';
 import { useServer, type Extra } from 'graphql-ws/use/ws';
 import { WebSocketServer } from 'ws';
-import { prisma } from './prisma';
-import { schema } from './schema';
+import { prisma } from './prisma.js';
+import { schema } from './schema/index.js';
 
 export interface Context {
   user: User;
