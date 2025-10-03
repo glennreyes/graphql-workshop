@@ -6,6 +6,8 @@ This workshop is all about using GraphQL in React applications. We'll provide yo
 
 👉 Slides: [GraphQL for React Developers (Speaker Deck)](https://speakerdeck.com/glennreyes/graphql-for-react-developers)
 
+**Live demo:** https://graphql-workshop.vercel.app
+
 ## 🚀 Demo & Links
 
 - Frontend (Vercel): [graphql-workshop.vercel.app](https://graphql-workshop.vercel.app)
