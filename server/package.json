@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --noEmit false --outDir dist",
+    "build": "tsc --noEmit false --module commonjs --moduleResolution node --outDir dist",
     "dev": "tsx watch --clear-screen=false src/index.ts",
     "lint": "TIMING=1 eslint .",
     "postinstall": "prisma generate",
     "seed": "tsx prisma/seed.ts",
-    "start": "node dist/index.js",
+    "migrate": "prisma migrate dev",
+    "start": "node dist/src/index.js",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -17,6 +18,7 @@
     "@pothos/plugin-prisma": "^3.60.0",
     "@prisma/client": "^6.16.3",
     "@types/ws": "^8.18.1",
+    "dotenv": "^16.6.1",
     "graphql": "^16.8.1",
     "graphql-scalars": "^1.22.2",
     "graphql-ws": "^6.0.6",
@@ -30,6 +32,7 @@
     "@types/node": "^22.13.4",
     "eslint": "^9.36.0",
     "eslint-config-banana": "^1.7.3",
-    "tsx": "^4.20.6"
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
   }
 }

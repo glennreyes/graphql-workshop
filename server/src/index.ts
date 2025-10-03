@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { createServer } from 'node:http';
 import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
 import type { User } from '@prisma/client';
@@ -5,8 +6,13 @@ import { createYoga } from 'graphql-yoga';
 import type { Context as GraphQLWSContext, SubscribePayload } from 'graphql-ws';
 import { useServer, type Extra } from 'graphql-ws/use/ws';
 import { WebSocketServer } from 'ws';
+import { parse, validate } from 'graphql';
 import { prisma } from './prisma.js';
 import { schema } from './schema/index.js';
+
+if (process.env.NODE_ENV !== 'production') {
+  console.info('Using database URL %s', process.env.DATABASE_URL);
+}
 
 export interface Context {
   user: User;
@@ -14,10 +20,7 @@ export interface Context {
 
 const yoga = createYoga<Context>({
   context: async () => {
-    // Auth logic implementation here
-    // Mocking first user for now
     const user = await prisma.user.findFirstOrThrow();
-
     return { user };
   },
   renderGraphiQL,
@@ -29,7 +32,6 @@ const yoga = createYoga<Context>({
 
 const server = createServer(yoga);
 
-// Set up WebSocket server for subscriptions on the GraphQL endpoint
 const wsServer = new WebSocketServer({
   server,
   path: yoga.graphqlEndpoint,
@@ -83,7 +85,10 @@ useServer(
   wsServer,
 );
 
-server.listen(4000, () => {
-  console.info('Server is running on http://localhost:4000/graphql');
-  console.info('WebSocket subscriptions available at ws://localhost:4000/graphql');
+const port = Number.parseInt(process.env.PORT ?? '4000', 10);
+
+server.listen(port, () => {
+  const displayPort = Number.isFinite(port) ? port : 4000;
+  console.info(`Server is running on http://localhost:${displayPort}/graphql`);
+  console.info(`WebSocket subscriptions available at ws://localhost:${displayPort}/graphql`);
 });

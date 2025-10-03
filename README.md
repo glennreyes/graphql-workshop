@@ -4,6 +4,16 @@ Welcome to the GraphQL workshop for React developers! ☀️
 
 This workshop is all about using GraphQL in React applications. We'll provide you with a pre-configured setup designed for scalability, focusing on how the client interacts with GraphQL. From there, we'll explore advanced features of GraphQL, such as fragments, mutation cache, optimistic UI, and subscriptions. We'll also touch briefly on how GraphQL fits into the evolving React ecosystem, including emerging patterns with React 19 and Server Components. By the end, participants will have a comprehensive toolkit for crafting scalable, GraphQL-integrated React applications.
 
+👉 Slides: [GraphQL for React Developers (Speaker Deck)](https://speakerdeck.com/glennreyes/graphql-for-react-developers)
+
+## 🚀 Demo & Links
+
+- Frontend (Vercel): [graphql-workshop.vercel.app](https://graphql-workshop.vercel.app)
+- GraphQL API (Fly.io): [graphql-workshop.fly.dev/graphql](https://graphql-workshop.fly.dev/graphql)
+- Repository: [github.com/glennreyes/graphql-workshop](https://github.com/glennreyes/graphql-workshop)
+
+> The production API uses a lightweight SQLite database (`dev.db`). It lives on the Fly volume and is seeded during deployment; plan for routine pruning or migrations before storing larger datasets.
+
 ## 🔧 Setup
 
 1. Get started by cloning this repo and installing the dependencies:
