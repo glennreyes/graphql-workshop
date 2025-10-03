@@ -1,4 +1,5 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
+import { graphqlEndpoint } from './lib/constants';
 
 const config: CodegenConfig = {
   config: {
@@ -17,6 +18,6 @@ const config: CodegenConfig = {
     },
   },
   overwrite: true,
-  schema: 'http://localhost:4000/graphql',
+  schema: graphqlEndpoint,
 };
 export default config;
